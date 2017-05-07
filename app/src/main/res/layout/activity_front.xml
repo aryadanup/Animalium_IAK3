@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:src="@drawable/logo"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerCrop"
         android:id="@+id/imageView" />
     <Button
         android:id="@+id/button1"
@@ -22,9 +24,22 @@
         android:textColor="#ffffff"/>
     <EditText
         android:id="@+id/edit1"
+        android:layout_marginTop="30dp"
         android:textSize="24dp"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:hint="Masukan nama Anda "
-        android:layout_below="@+id/imageView"/>
+        android:gravity="center"
+        android:hint="Username"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true" />
+    <EditText
+        android:id="@+id/edit2"
+        android:layout_marginTop="30dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:layout_below="@+id/edit1"
+        android:textSize="24dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"/>
 </RelativeLayout>

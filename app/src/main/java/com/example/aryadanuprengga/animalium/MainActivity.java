@@ -1,15 +1,23 @@
 package com.example.aryadanuprengga.animalium;
 
+import android.content.ClipData;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private DrawerLayout navbar;
+    private ActionBarDrawerToggle toggle;
+    private Toolbar toolbar;
     TextView Mnama;
     RecyclerView recyclerView;
     AnimalModel animalModel;
@@ -22,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Mnama=(TextView) findViewById(R.id.MnamaTextView);
         String namadarifront=getIntent().getStringExtra("NAMA");
-        Mnama.setText("Selamat Datang"+" "+namadarifront);
 
         recyclerView=(RecyclerView) findViewById(R.id.recyclerView);
         animalAdapter=new AnimalAdapter(getApplicationContext(),animalModelList);
@@ -33,7 +40,25 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(animalAdapter);
 
         persiapanData();
+        toolbar=(Toolbar)findViewById(R.id.nav_action);
+        setSupportActionBar(toolbar);
+        navbar=(DrawerLayout)findViewById(R.id.navbar);
+        toggle=new ActionBarDrawerToggle(this, navbar, R.string.open, R.string.close);
+        navbar.addDrawerListener(toggle);
+        toggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(toggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     void persiapanData(){
         String [] namaIndonesia={"Banteng","Ayam","Kepiting","Serigala","Kuda Nil","Koala","Lemur","Landak","Babi",
                 "Macan","Paus","Zebra"};
